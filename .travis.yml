@@ -24,8 +24,8 @@ install:
   - npm install
 
 before_script:
-  - git config --global user.name "viko16"
-  - git config --global user.email "16viko@gmail.com"
+  - git config --global user.name "chenhm"
+  - git config --global user.email "chenhm@gmail.com"
   - git clone --branch gh-pages https://${GH_REF} dist
 
 script:
@@ -34,7 +34,7 @@ script:
 after_success:
   - npm run build
   - cd dist
-  - echo "ukn.me" > CNAME
+  - echo "chenhm.com" > CNAME
   - cp index.html 404.html
   - git add --all .
   - git commit --message "Automatically update from travis-ci"
@@ -43,5 +43,5 @@ after_success:
 # Note: you should set Environment Variables here or 'Settings' on travis-ci.org
 env:
   global:
-    - GH_REF: github.com/viko16/vue-ghpages-blog.git
+    - GH_REF: github.com/chenhm/vue-ghpages-blog.git
     # - GH_TOKEN: 'Your GitHub Personal access tokens, via https://github.com/settings/tokens'

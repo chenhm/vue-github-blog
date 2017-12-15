@@ -1,5 +1,7 @@
 @import '~normalize.css'
 @import '~prismjs/themes/prism.css'
+// @import 'style.css'
+// @import 'bootstrap-responsive.css'
 
 //
 // variable
@@ -15,6 +17,7 @@ textColor = #555
 linkColor = #08c
 metaColor = #888
 codeBgColor = #f7f7f7
+pageWidth = 700px
 
 //
 // common
@@ -34,7 +37,6 @@ body
   -webkit-text-size-adjust none
   // size
   position relative
-  max-width 700px
   margin 0 auto
   padding 0
   background bgColor
@@ -59,13 +61,53 @@ a
 // -----------------------------------------
 
 .header
-  margin 50px auto
   text-align center
-  a
-    font-size fontSize + 2
-    letter-spacing 5px
-    text-transform uppercase
-    color textColor
+  width: 100%;
+  border-top: 4px solid #eaeaea;
+  /* border-bottom: 4px solid #fafafa; */
+  background: #fff;
+  filter: none;
+  -webkit-box-shadow: 0 0px 0 0px rgba(0,0,0,.025), 0px 1px 0px rgba(0,0,0,.3);
+  -moz-box-shadow: 0 0px 0 0px rgba(0,0,0,.025), 0px 1px 0px rgba(0,0,0,.3);
+  box-shadow: 0 0px 0 0px rgba(0,0,0,.025), 0px 1px 0px rgba(0,0,0,.3);
+  .container
+    display: table;
+    max-width: pageWidth
+    width: pageWidth
+    margin: 0 auto;
+    .brand
+      font-size: 20px;
+      font-weight: 200;
+    a
+      float: left;
+      font-size fontSize + 2
+      position: relative;
+      padding: 20px 20px;
+      /* color: #a3a3a3; */
+      color: #000;
+      text-shadow: 0 1px 0 #ffffff;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      -ms-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+      // letter-spacing 5px
+      // text-transform uppercase
+      color textColor
+    ul.nav
+      position: relative;
+      display: block;
+      float: right;
+      margin: 0 10px 0 0;
+      li
+        float: left;
+        list-style: none;
+        margin-top: -4px;
+        &:hover
+          border-top: 4px solid #ddd;
+          background: #fafafa !important;
+          color: #bfbfbf;
+
 
 .searchbar-input
   display block
@@ -97,7 +139,8 @@ a
 // -----------------------------------------
 
 .list-view
-  margin 0 20px
+  margin 0 auto
+  width: pageWidth
   ol,
   ul
     padding 0
@@ -105,13 +148,14 @@ a
 
 .list-item
   position relative
-  margin-bottom 50px
+  // margin-bottom 50px
 
 .item-title
   display inline-block
   margin-bottom 10px
   font-size fontSize + 2
-  color textColor
+  color #dd0000
+  margin-left: 1em;
   &:hover
     color linkColor
 
@@ -127,7 +171,8 @@ a
 // -----------------------------------------
 
 .post-view
-  margin 0 20px 50px
+  margin 0 auto
+  width pageWidth
   a:hover
     border-bottom 1px dashed linkColor
 
@@ -161,3 +206,11 @@ blockquote
   margin 0
   padding 0 16px
   border-left 4px solid #ddd
+
+.paginator a
+  padding: 0 4px;
+  margin: 2px;
+  text-decoration: none;
+  &.current-page
+    color: white;
+    background: #ff0000;

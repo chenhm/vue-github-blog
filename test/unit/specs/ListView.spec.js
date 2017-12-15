@@ -63,7 +63,7 @@ describe('List.vue', function () {
 
   it('should render "loading" text when loading', function () {
     const wrapper = mount(ListView, { router })
-    expect(wrapper.text()).to.equal('loading..')
+    expect(wrapper.text()).to.equal('loading.. <前页  后页>(共 0 篇)\n  ')
   })
 
   it('should render correct list', async function () {
@@ -92,7 +92,7 @@ describe('List.vue', function () {
 
     // test the readability, format, className
     const timeEl = item.find('time')[0]
-    expect(timeEl.text()).to.equal('1年前')
+    expect(timeEl.text()).to.equal('2016-01-02 | 1年前')
     const expectDate = new Date(mockData[1].date).toLocaleDateString()
     expect(timeEl.getAttribute('title')).to.equal(expectDate)
     expect(timeEl.hasClass('item-date')).to.be.true

@@ -8,7 +8,11 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '*',
+    redirect: '/list/1'
+  },
+  {
+    path: '/list/:page',
     name: 'list',
     component: ListView
   },

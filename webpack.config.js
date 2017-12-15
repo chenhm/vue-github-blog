@@ -97,9 +97,9 @@ const config = {
   ],
   devServer: {
     compress: true,
-    contentBase: resolve('static'),
+    contentBase: [resolve('static'), resolve('test/unit/mockData')],
     historyApiFallback: true,
-    host: '0.0.0.0',
+    host: '127.0.0.1',
     noInfo: true
   },
   devtool: isProd ? '#cheap-module-source-map' : '#eval-source-map'
