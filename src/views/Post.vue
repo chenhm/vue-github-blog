@@ -35,7 +35,7 @@ export default {
   computed: {
     htmlFromMarkdown () {
       return this.type === 'md' ? marked(this.content) : adoc.convert(this.content,
-        {attributes: { showtitle: true, toc: 'right', imagesdir: `https://raw.githubusercontent.com/${conf.repo}/${conf.branch}`, 'source-highlighter': 'prismjs' }})
+        {attributes: { showtitle: true, toc: 'right', imagesdir: `https://raw.githubusercontent.com/${conf.repo}/${conf.branch}/${conf.path}`, 'source-highlighter': 'prismjs' }})
     }
   },
 
