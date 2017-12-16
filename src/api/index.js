@@ -4,7 +4,8 @@ import 'es6-promise/auto'
 import conf from '../config'
 import { onlyTitle, onlyDate } from '../utils'
 
-const isProd = process.env.NODE_ENV === 'production'
+// const isProd = process.env.NODE_ENV === 'production'
+const isProd = true
 
 /**
  * Format GitHub Api url for content list
@@ -58,7 +59,7 @@ export default {
         .then(res => res.data)
         .then(arr => {
           // Data cleaning
-          const list = arr.map(({name, sha, size}) => ({
+          const list = arr.filter(({type}) => type === 'file').map(({name, sha, size}) => ({
             title: onlyTitle(name),
             date: onlyDate(name),
             type: name.toLocaleLowerCase().endsWith('.adoc') ? 'adoc' : 'md',
