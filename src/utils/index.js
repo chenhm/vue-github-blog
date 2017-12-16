@@ -6,7 +6,7 @@
  * @returns {string}
  */
 export function onlyTitle (title) {
-  return title.replace(/\.md$/, '')
+  return title.replace(/\.(md|adoc)$/, '')
     .replace(/^\d{4}-\d{1,2}-\d{1,2}-/, '')
 }
 

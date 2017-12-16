@@ -163,7 +163,7 @@ a
   display inline-block
   font-size fontSize - 2
   color metaColor
-  border-top 1px solid #ddd
+  // border-top 1px solid #ddd
   padding-top 12px
 
 //
@@ -214,3 +214,73 @@ blockquote
   &.current-page
     color: white;
     background: #ff0000;
+
+// Asciidoc
+.admonitionblock .icon
+  display none
+
+.admonitionblock
+  font-size: 1rem;
+  font-style: italic;
+  padding: 0 1rem;
+  margin: 2.5rem 0;
+  position: relative;
+  .content
+    background-color: #fafeff;
+    border-top: 1px dotted #00a3d9;
+    border-bottom: 1px dotted #00a3d9;
+    border-left: 0 !important;
+    &::before
+      content: 'Note';
+      padding: .2rem .5rem;
+      background: #00a3d9;
+      color: #fff;
+      position: absolute;
+      left: 0;
+      top: .25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,.2);
+      border-radius: 4px;
+      -webkit-transform: rotate(-5deg) translateX(-10px) translateY(-25px);
+      -moz-transform: rotate(-5deg) translateX(-10px) translateY(-25px);
+      -ms-transform: rotate(-5deg) translateX(-10px) translateY(-25px);
+      -o-transform: rotate(-5deg) translateX(-10px) translateY(-25px);
+      transform: rotate(-5deg) translateX(-10px) translateY(-25px);
+
+b.conum
+  counter-increment: notation-counter;
+  font-size: 0;
+
+b.conum:after, .colist>ol>li:before
+  display: inline-block;
+  content: counter(notation-counter);
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+  font-size: small;
+  background: #e85151;
+  color: #fff;
+  text-align: center;
+  line-height: 1rem;
+  vertical-align: middle;
+  font-weight: lighter;
+  font-family: Arial, sans-serif;
+
+.colist>ol
+  counter-reset: li;
+  li
+    counter-increment: notation-counter;
+    position: relative;
+    list-style: none;
+    &:before
+      content: counter(li);
+      counter-increment: li;
+      position: absolute;
+      left: -1.5rem;
+      top: .3rem;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      line-height: 1rem;
+
+.listingblock pre.highlightjs
+  padding: 1em

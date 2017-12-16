@@ -26,7 +26,7 @@ export function getListUrl () {
  */
 export function getPostUrl (hash) {
   // @see https://developer.github.com/v3/git/blobs/#get-a-blob
-  return `https://api.github.com/repos/${conf.repo}/git/blobs/${hash}`
+  return isProd ? `https://api.github.com/repos/${conf.repo}/git/blobs/${hash}` : `/${hash}`
 }
 
 export { axios as axiosInstance }
@@ -61,6 +61,7 @@ export default {
           const list = arr.map(({name, sha, size}) => ({
             title: onlyTitle(name),
             date: onlyDate(name),
+            type: name.toLocaleLowerCase().endsWith('.adoc') ? 'adoc' : 'md',
             sha,
             size
           }))

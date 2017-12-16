@@ -36,7 +36,7 @@ describe('App.vue', function () {
 
   it('should not render search bar in post page', async function () {
     const wrapper = await mount(App, { router })
-    router.push('/post/d7266981ec507bc60b13b6f8585d449b26729039')
+    router.push('/post/2228106d687d1fe3fe49841d99f3e90222f00214')
 
     expect(wrapper.vm.isPageList).to.be.false
 

@@ -25,10 +25,11 @@ var webpackConfig = merge(baseConfig, {
 
 module.exports = function (config) {
   config.set({
+    // browsers: ['Chrome'],
     browsers: ['PhantomJS'],
     frameworks: ['mocha', 'chai'],
     reporters: ['spec'],
-    files: ['./index.js'],
+    files: ['../../static/asciidoctor.min.js', './index.js'],
     preprocessors: {
       './index.js': ['webpack']
     },

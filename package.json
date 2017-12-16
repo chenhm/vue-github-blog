@@ -81,6 +81,8 @@
     "vue-loader": "^12.2.2",
     "vue-style-loader": "^3.0.0",
     "vue-template-compiler": "^2.1.0",
+    "vue-test-utils": "^1.0.0-beta.8",
+    "vuex": "^3.0.1",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.2.0",
     "webpack-merge": "^4.1.0"

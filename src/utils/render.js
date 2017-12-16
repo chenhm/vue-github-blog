@@ -1,5 +1,6 @@
 import marked from 'marked'
-import Prism from 'prismjs'
+// import Prism from 'prismjs'
+import Prism from '../../external/prism'
 
 // https://github.com/chjj/marked#overriding-renderer-methods
 const renderer = new marked.Renderer()

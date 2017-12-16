@@ -20,23 +20,29 @@
 </template>
 
 <script>
-import api from '../api'
 import conf from '../config'
+import store from '../vuex/store'
 
 const pageSize = 10
 
 export default {
   name: 'listView',
 
+  store,
+
   data () {
     return {
-      lists: [],
-      pages: 0,
-      loading: true
+      pages: 0
     }
   },
 
   computed: {
+    loading () {
+      return this.$store.state.loading
+    },
+    lists () {
+      return this.$store.state.lists
+    },
     currentPage () {
       return this.$route.params.page || 1
     },
@@ -79,17 +85,7 @@ export default {
 
   methods: {
     loadList () {
-      this.loading = true
-      api.getList().then(
-        lists => {
-          this.loading = false
-          this.lists = lists
-        },
-        err => {
-          this.loading = false
-          console.info('[getList]', err)
-        }
-      )
+      store.dispatch('getList')
     }
   },
 

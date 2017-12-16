@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 // mock axios requests
 import './mock'
-
+// import '../../static/asciidoctor.min.js'
 // register global filter
 import filter from '@/utils/filter'
 filter(Vue)

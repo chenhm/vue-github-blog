@@ -512,7 +512,7 @@
     }
   },
   {
-    "name": "2015-11-05-wireshark-ssl-other-way.md",
+    "name": "2015-11-05-wireshark-ssl-other-way.adoc",
     "path": "_posts/2015-11-05-wireshark-ssl-other-way.md",
     "sha": "13ede65277c1cf4c24000daf874199a1ec03fa5b",
     "size": 1744,
@@ -528,7 +528,7 @@
     }
   },
   {
-    "name": "2015-12-13-cassandra-note.md",
+    "name": "2015-12-13-cassandra-note.adoc",
     "path": "_posts/2015-12-13-cassandra-note.md",
     "sha": "2228106d687d1fe3fe49841d99f3e90222f00214",
     "size": 412,
