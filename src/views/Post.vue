@@ -54,8 +54,7 @@ export default {
       const hash = this.$route.params.hash
       store.dispatch('getList').then(() => {
         const item = store.state.lists.find(it => it.sha === hash)
-        this.type = item.type
-        console.log(item)
+        if (item) { this.type = item.type }
         api.getDetail(hash)
           .then(text => {
             // Parse front-matter

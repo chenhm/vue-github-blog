@@ -1,7 +1,5 @@
 @import '~normalize.css'
 @import '~prismjs/themes/prism.css'
-// @import 'style.css'
-// @import 'bootstrap-responsive.css'
 
 //
 // variable
@@ -104,7 +102,7 @@ a
         list-style: none;
         margin-top: -4px;
         &:hover
-          border-top: 4px solid #ddd;
+          border-top: 4px solid #F00;
           background: #fafafa !important;
           color: #bfbfbf;
 
@@ -184,6 +182,13 @@ a
 @media (max-width: 767px)
   .post-title
     font-size 1.5em
+  .header .container
+    width: auto
+    a
+      padding: 1em;
+  .list-view, .post-view
+    width: auto
+    padding: 0 .5em;
 
 .post-date
   float right
@@ -214,6 +219,9 @@ blockquote
   &.current-page
     color: white;
     background: #ff0000;
+
+textarea.md
+  display: none
 
 // Asciidoc
 .admonitionblock .icon

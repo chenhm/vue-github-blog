@@ -4,8 +4,8 @@ import 'es6-promise/auto'
 import conf from '../config'
 import { onlyTitle, onlyDate } from '../utils'
 
-// const isProd = process.env.NODE_ENV === 'production'
-const isProd = true
+const isProd = process.env.NODE_ENV === 'production'
+// const isProd = true
 
 /**
  * Format GitHub Api url for content list
@@ -67,7 +67,7 @@ export default {
             size
           }))
           // Save into cache
-          // Cache.set('list', list)
+          if (isProd) { Cache.set('list', list) }
           // ..then return
           return list
         })
@@ -89,7 +89,7 @@ export default {
         .then(res => res.data)
         .then(content => {
           // Save into cache
-          // Cache.set(cacheKey, content)
+          if (isProd) { Cache.set(cacheKey, content) }
           // ..then return
           return content
         })
