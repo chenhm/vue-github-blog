@@ -6,6 +6,9 @@
       <time pubdate="pubdate" :datetime="this.date | formatDate" :title="this.date | formatDate" class="post-date">{{ this.date | timeago }}</time>
     </h1>
     <article v-if="content" v-html="htmlFromMarkdown"></article>
+    <section class="comment">
+      <div id="disqus_thread"></div>
+    </section>
   </section>
 </template>
 
@@ -41,6 +44,20 @@ export default {
 
   created () {
     this.loadPost()
+    setTimeout(() => {
+      let d = document
+      let s = document.createElement('script')
+      s.setAttribute('id', 'embed-disqus')
+      s.setAttribute('data-timestamp', +new Date())
+      s.type = 'text/javascript'
+      s.async = true
+      s.src = `//${conf.disqus_shortname}.disqus.com/embed.js`
+      if (typeof (DISQUS) === 'undefined') {
+        (d.head || d.body).appendChild(s)
+      } else {
+        DISQUS.reset({ reload: true })
+      }
+    }, 0)
   },
 
   updated () {

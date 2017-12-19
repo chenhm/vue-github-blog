@@ -10,5 +10,6 @@ module.exports = {
    */
   repo: 'chenhm/chenhm.github.com', // Which repository you stored the posts
   path: '_posts',
-  branch: 'master'
+  branch: 'master',
+  disqus_shortname: 'chenhm'
 }

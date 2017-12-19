@@ -1,7 +1,7 @@
 <template>
   <section class="post-view">
     <article v-if="content" v-html="htmlFromMarkdown"></article>
-    <div class="md">
+    <div v-else class="md">
       <slot/>
     </div>
   </section>
@@ -19,7 +19,6 @@ export default {
       content: ''
     }
   },
-
   computed: {
     htmlFromMarkdown () {
       return marked(this.content)
