@@ -74,9 +74,10 @@ export default {
         if (item) {
           this.type = item.type
           const href = item.download_url
+          const hash = item.sha
           // Set window title
           window.document.title = `${item.title} - ${conf.blogTitle}`
-          api.getDetail(href)
+          api.getDetail(hash, href)
             .then(text => {
             // Parse front-matter
             // https://github.com/jxson/front-matter#fmstring

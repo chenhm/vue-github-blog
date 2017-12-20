@@ -92,7 +92,7 @@ export default {
     }
   },
 
-  getDetail (hash) {
+  getDetail (hash, url) {
     const httpOpts = {
       // https://developer.github.com/v3/media/#raw-1
       headers: { Accept: 'application/vnd.github.v3.raw' }
@@ -103,7 +103,7 @@ export default {
       // Read from cache
       return Promise.resolve(Cache.get(cacheKey))
     } else {
-      return axios.get(hash, httpOpts)
+      return axios.get(url, httpOpts)
         .then(res => res.data)
         .then(content => {
           // Save into cache
