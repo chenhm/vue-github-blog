@@ -19,7 +19,7 @@ const routes = [
     component: ListView
   },
   {
-    path: '/post/:hash',
+    path: '/post/:id',
     name: 'post',
     component: PostView
   },

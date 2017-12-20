@@ -68,25 +68,30 @@ export default {
 
   methods: {
     loadPost () {
-      const hash = this.$route.params.hash
+      const id = this.$route.params.id
       store.dispatch('getList').then(() => {
-        const item = store.state.lists.find(it => it.sha === hash)
-        if (item) { this.type = item.type }
-        api.getDetail(hash)
-          .then(text => {
+        const item = store.state.lists.find(it => it.id === id)
+        if (item) {
+          this.type = item.type
+          const hash = item.sha
+          api.getDetail(hash)
+            .then(text => {
             // Parse front-matter
             // https://github.com/jxson/front-matter#fmstring
-            const content = fm(text)
-            this.content = content.body
-            this.title = content.attributes.title
-            this.date = content.attributes.date
-            // Set window title
-            window.document.title = `${this.title} - ${conf.blogTitle}`
-          })
-          .catch(err => {
-            console.error('[getDetail]', err)
-            this.$router.replace('/')
-          })
+              const content = fm(text)
+              this.content = content.body
+              this.title = content.attributes.title
+              this.date = content.attributes.date
+              // Set window title
+              window.document.title = `${this.title} - ${conf.blogTitle}`
+            })
+            .catch(err => {
+              console.error('[getDetail]', err)
+              this.$router.replace('/')
+            })
+        } else {
+          console.error('[getDetail]', 'Cant found post id')
+        }
       })
     },
 

@@ -33,7 +33,7 @@ renderer.code = (code, lang) => {
 
 const imageRender = renderer.image.bind(renderer)
 renderer.image = function (href, title, text) {
-  if (!href.startsWith()) {
+  if (!/^http(s)?:\/\//.test(href)) {
     href = `https://raw.githubusercontent.com/${conf.repo}/${conf.branch}/${conf.path}/${href}`
   }
   return imageRender(href, title, text)

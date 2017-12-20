@@ -3,9 +3,9 @@
     <div class="loading" v-if="loading">loading..</div>
     <div class="no-content" v-else-if="filteredList.length === 0">nothing..</div>
     <ol v-else class="list">
-      <li v-for="{ title, sha, date } in filteredList" :key="sha" class="list-item">
+      <li v-for="{ title, sha, date, id } in filteredList" :key="sha" class="list-item">
         <time pubdate="pubdate" :datetime="date | formatDate" :title="date | formatDate" class="item-date">{{date}} | {{ date | timeago }}</time>
-        <router-link :to="'/post/' + sha" class="item-title">
+        <router-link :to="'/post/' + id" class="item-title">
           {{ title }}
         </router-link>
       </li>
@@ -55,7 +55,6 @@ export default {
     },
 
     nextPage () {
-      console.log(this.pages)
       if (this.currentPage < this.pages) {
         return Number(this.currentPage) + 1
       } else {

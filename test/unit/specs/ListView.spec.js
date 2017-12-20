@@ -15,6 +15,7 @@ Vue.config.devtools = false
 
 const mockData = [{
   'name': 'mock1 name',
+  'id': 'id-1234',
   'sha': '35d4387629a7ff34f6d9f1d068101cac958f057c',
   'size': 111,
   'title': 'mock1 title',
@@ -88,7 +89,7 @@ describe('List.vue', function () {
     // test the spelling, URL, className
     const linkEl = item.find('a')
     expect(linkEl.text().trim()).to.equal(mockData[0].title)
-    expect(linkEl.element.getAttribute('href')).to.equal('/post/' + mockData[0].sha)
+    expect(linkEl.element.getAttribute('href')).to.equal('/post/' + mockData[0].id)
     expect(linkEl.hasClass('item-title')).to.be.true
 
     // test the readability, format, className

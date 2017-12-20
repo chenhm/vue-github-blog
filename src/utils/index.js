@@ -10,6 +10,10 @@ export function onlyTitle (title) {
     .replace(/^\d{4}-\d{1,2}-\d{1,2}-/, '')
 }
 
+export function onlyID (title) {
+  return title.replace(/\.(md|adoc)$/, '')
+}
+
 /**
  * get publish date from file name
  *

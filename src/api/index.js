@@ -2,10 +2,10 @@ import axios from 'axios'
 import 'es6-promise/auto'
 
 import conf from '../config'
-import { onlyTitle, onlyDate } from '../utils'
+import { onlyTitle, onlyDate, onlyID } from '../utils'
 
-const isProd = process.env.NODE_ENV === 'production'
-// const isProd = true
+// const isProd = process.env.NODE_ENV === 'production'
+const isProd = true
 
 /**
  * Format GitHub Api url for content list
@@ -35,6 +35,20 @@ export { axios as axiosInstance }
 // Cache processor
 const Cache = {
   get: (key) => {
+    if (!window.localStorage) return false
+    return JSON.parse(window.localStorage.getItem(key))
+  },
+  set: (key, data) => {
+    if (!window.localStorage) return false
+    window.localStorage.setItem(key, JSON.stringify(data))
+    return true
+  },
+  has: (key) => {
+    return Boolean(window.localStorage && window.localStorage.hasOwnProperty(key))
+  }
+}
+const sessionCache = {
+  get: (key) => {
     if (!window.sessionStorage) return false
     return JSON.parse(window.sessionStorage.getItem(key))
   },
@@ -49,17 +63,19 @@ const Cache = {
 }
 
 export default {
+  Cache,
 
   getList () {
-    if (Cache.has('list')) {
+    if (sessionCache.has('list')) {
       // Read from cache
-      return Promise.resolve(Cache.get('list'))
+      return Promise.resolve(sessionCache.get('list'))
     } else {
       return axios.get(getListUrl())
         .then(res => res.data)
         .then(arr => {
           // Data cleaning
           const list = arr.filter(({type}) => type === 'file').map(({name, sha, size}) => ({
+            id: onlyID(name),
             title: onlyTitle(name),
             date: onlyDate(name),
             type: name.toLocaleLowerCase().endsWith('.adoc') ? 'adoc' : 'md',
@@ -67,7 +83,7 @@ export default {
             size
           }))
           // Save into cache
-          if (isProd) { Cache.set('list', list) }
+          if (isProd) { sessionCache.set('list', list) }
           // ..then return
           return list
         })
