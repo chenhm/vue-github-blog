@@ -47,7 +47,7 @@ const Cache = {
     return Boolean(window.localStorage && window.localStorage.hasOwnProperty(key))
   }
 }
-const sessionCache = {
+export const sessionCache = {
   get: (key) => {
     if (!window.sessionStorage) return false
     return JSON.parse(window.sessionStorage.getItem(key))

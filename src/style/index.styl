@@ -224,6 +224,10 @@ blockquote
 .admonitionblock .icon
   display none
 
+.tip .content::before
+  content: 'Tip'
+.note .content::before
+  content: 'Note'
 .admonitionblock
   font-size: 1rem;
   font-style: italic;
@@ -236,7 +240,7 @@ blockquote
     border-bottom: 1px dotted #00a3d9;
     border-left: 0 !important;
     &::before
-      content: 'Note';
+      // content: 'Note';
       padding: .2rem .5rem;
       background: #00a3d9;
       color: #fff;

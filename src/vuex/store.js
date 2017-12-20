@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import api from '../api'
+import api, {sessionCache} from '../api'
 import fm from 'front-matter'
 
 Vue.use(Vuex)
@@ -22,6 +22,7 @@ export default new Vuex.Store({
       const it = state.lists.find((item) => item.sha === list.sha)
       if (it && list.title) {
         it.title = list.title
+        sessionCache.set('list', state.lists)
       }
     }
   },

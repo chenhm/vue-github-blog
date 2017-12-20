@@ -24,6 +24,8 @@ Chen Hongming <chenhm@gmail.com>
 
 ## 基本概念
 
+TIP: 这是一段测试文本
+
 Cassandra(社区也称为C*)在设计的时候就考虑了多数据中心多副本的情况，这使得它在跨数据中心的数据复制上相比其他数据库更具优势，一个典型的Cassandra集群含有多个数据中心，每个数据中心又由多个对等的节点组成。
 
 image::images/c-cluster.png[]

@@ -74,6 +74,8 @@ export default {
         if (item) {
           this.type = item.type
           const hash = item.sha
+          // Set window title
+          window.document.title = `${item.title} - ${conf.blogTitle}`
           api.getDetail(hash)
             .then(text => {
             // Parse front-matter
@@ -82,8 +84,6 @@ export default {
               this.content = content.body
               this.title = content.attributes.title
               this.date = content.attributes.date
-              // Set window title
-              window.document.title = `${this.title} - ${conf.blogTitle}`
             })
             .catch(err => {
               console.error('[getDetail]', err)
