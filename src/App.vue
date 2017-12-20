@@ -5,7 +5,7 @@
         <!--start: Navigation -->
           <router-link to="/" class="brand">{{ title }}</router-link>
           <ul class="nav">
-            <li><router-link to="/">Blogs</router-link></li>
+            <li><router-link to="/list/">Blogs</router-link></li>
             <li><router-link to="/slides/">Slides</router-link></li>
             <li><router-link to="/about/">About</router-link></li>
           </ul>

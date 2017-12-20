@@ -92,6 +92,8 @@ a
       // letter-spacing 5px
       // text-transform uppercase
       color textColor
+    &>a
+      padding: 12px 20px
     ul.nav
       position: relative;
       display: block;
@@ -101,7 +103,7 @@ a
         float: left;
         list-style: none;
         margin-top: -4px;
-        &:hover
+        a.router-link-active, a:hover
           border-top: 4px solid #F00;
           background: #fafafa !important;
           color: #bfbfbf;
@@ -186,9 +188,15 @@ a
     width: auto
     a
       padding: 1em;
+    &>a
+      padding: 0.2em;
   .list-view, .post-view
     width: auto
     padding: 0 .5em;
+    ol
+      margin-left: 0
+  .item-title
+    margin-left: 0.5em
 
 .post-date
   float right
