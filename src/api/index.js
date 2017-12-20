@@ -24,6 +24,7 @@ export function getListUrl () {
  * Format GitHub Api url for file content
  * @param {string} hash
  * @returns {string}
+ * @deprecated
  */
 export function getPostUrl (hash) {
   // @see https://developer.github.com/v3/git/blobs/#get-a-blob
@@ -74,14 +75,15 @@ export default {
         .then(res => res.data)
         .then(arr => {
           // Data cleaning
-          const list = arr.filter(({type}) => type === 'file').map(({name, sha, size}) => ({
+          const list = arr.filter(({type}) => type === 'file').map(({name, sha, size, download_url}) => ({
             id: onlyID(name),
             title: onlyTitle(name),
             date: onlyDate(name),
             type: name.toLocaleLowerCase().endsWith('.adoc') ? 'adoc' : 'md',
             sha,
+            download_url,
             size
-          }))
+          })).sort((itemA, itemB) => new Date(itemB.date) - new Date(itemA.date))
           // Save into cache
           if (isProd) { sessionCache.set('list', list) }
           // ..then return
@@ -101,7 +103,7 @@ export default {
       // Read from cache
       return Promise.resolve(Cache.get(cacheKey))
     } else {
-      return axios.get(getPostUrl(hash), httpOpts)
+      return axios.get(hash, httpOpts)
         .then(res => res.data)
         .then(content => {
           // Save into cache

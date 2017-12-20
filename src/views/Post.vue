@@ -73,10 +73,10 @@ export default {
         const item = store.state.lists.find(it => it.id === id)
         if (item) {
           this.type = item.type
-          const hash = item.sha
+          const href = item.download_url
           // Set window title
           window.document.title = `${item.title} - ${conf.blogTitle}`
-          api.getDetail(hash)
+          api.getDetail(href)
             .then(text => {
             // Parse front-matter
             // https://github.com/jxson/front-matter#fmstring

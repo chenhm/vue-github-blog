@@ -36,8 +36,8 @@ export default new Vuex.Store({
           lists => {
             context.commit(GET_LIST, {lists, loading: false})
             setTimeout(() => {
-              lists.forEach(({sha, type}) => {
-                api.getDetail(sha).then(text => {
+              lists.forEach(({sha, type, download_url}) => {
+                api.getDetail(download_url).then(text => {
                   if (type === 'md') {
                     const content = fm(text)
                     context.commit(UPDATE_LIST, {
