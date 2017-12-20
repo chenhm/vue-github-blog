@@ -35,13 +35,23 @@ export default new Vuex.Store({
           lists => {
             context.commit(GET_LIST, {lists, loading: false})
             setTimeout(() => {
-              lists.forEach(({sha}) => {
+              lists.forEach(({sha, type}) => {
                 api.getDetail(sha).then(text => {
-                  const content = fm(text)
-                  context.commit(UPDATE_LIST, {
-                    sha,
-                    title: content.attributes.title
-                  })
+                  if (type === 'md') {
+                    const content = fm(text)
+                    context.commit(UPDATE_LIST, {
+                      sha,
+                      title: content.attributes.title
+                    })
+                  } else {
+                    let ret = /^#([^#].*)/m.exec(text)
+                    if (ret) {
+                      context.commit(UPDATE_LIST, {
+                        sha,
+                        title: ret[1]
+                      })
+                    }
+                  }
                 })
               })
             }, 0)
