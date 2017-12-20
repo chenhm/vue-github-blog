@@ -11,7 +11,7 @@
       </li>
     </ol>
 
-    <div id="post-pagination" class="paginator">
+    <div id="post-pagination" class="paginator" v-if="pages !== 0">
       <router-link :to="'/list/' + previousPage">&lt;前页</router-link>
       <router-link v-for="n in pages" :key="n" :to="'/list/' + n" v-bind:class="{'current-page': n == currentPage}">{{n}}</router-link>
       <router-link :to="'/list/' + nextPage">后页&gt;</router-link>(共 {{lists.length}} 篇)

@@ -1,7 +1,7 @@
 <template>
   <section class="post-view">
     <div v-if="!content">loading..</div>
-    <h1 class="post-title">
+    <h1 v-if="title" class="post-title">
       {{ title }}
       <time pubdate="pubdate" :datetime="this.date | formatDate" :title="this.date | formatDate" class="post-date">{{ this.date | timeago }}</time>
     </h1>
