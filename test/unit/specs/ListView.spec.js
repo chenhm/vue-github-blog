@@ -66,7 +66,7 @@ describe('List.vue', function () {
   it('should render "loading" text when loading', function () {
     store.commit('getList', {lists: [], loading: true})
     const wrapper = mount(ListView, { router })
-    expect(wrapper.text()).to.equal('loading.. <前页  后页>(共 0 篇)')
+    expect(wrapper.text()).to.equal('loading..')
   })
 
   it('should render correct list', async function () {
