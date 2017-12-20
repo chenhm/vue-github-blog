@@ -43,5 +43,5 @@ after_success:
 # Note: you should set Environment Variables here or 'Settings' on travis-ci.org
 env:
   global:
-    - GH_REF: github.com/chenhm/vue-ghpages-blog.git
+    - GH_REF: github.com/chenhm/vue-github-blog.git
     # - GH_TOKEN: 'Your GitHub Personal access tokens, via https://github.com/settings/tokens'
