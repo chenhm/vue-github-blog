@@ -8,20 +8,25 @@
 ✏️ A blog based on GitHub Pages built with Vue.js 2 + webpack 3.
 
 一个依赖 GitHub Pages，无需本地生成的静态博客，使用了 Vue.js 2 组件开发，webpack 3 打包。
-这个项目受 https://github.com/viko16/vue-ghpages-blog 启发，增加了对 Asciidoc 的支持。
+
+最近偏好使用Asciidoc写技术类文章，而GitHub Pages的Jekyll一直不支持Asciidoc插件，
+于是受 https://github.com/viko16/vue-ghpages-blog 启发，在原项目上增加了对 Asciidoc 的支持，
+并在易用性上做了些改进。
 
 
 ## Features
 
-- Vue 2 / Vue-router / axios
+- Vue 2 / Vuex / Vue-router / axios
 - webpack 3 / Babel 6 / Stylus
 - No need to generate locally ( now using [TravisCI](https://travis-ci.org) )
 - Hosting on GitHub Pages
-- SessionStorage cache
+- SessionStorage and localStorage cache
+- Markdown and Asciidoc render
+- Prism.js highlight
 
 ## Demo
 
-http://ukn.me
+http://chenhm.com
 
 ## Develop
 
