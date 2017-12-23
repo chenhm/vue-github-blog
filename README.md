@@ -42,7 +42,7 @@ npm test
 ```
 
 ## About My Workflow
-- All the posts are stored in [viko16/writings](https://github.com/viko16/writings), while [`src/config.js`](src/config.js) points it.
+- All the posts are stored in [chenhm/posts](https://github.com/chenhm/chenhm.github.com/tree/master/posts), while [`src/config.js`](src/config.js) points it.
 - When I push the code to `develop` branch, [TravisCI](.travis.yml) will deploy `gh-pages` automatically.
 
 ## License
