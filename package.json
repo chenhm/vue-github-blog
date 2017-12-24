@@ -1,7 +1,7 @@
 {
-  "name": "vue-ghpages-blog",
+  "name": "vue-github-blog",
   "description": "A blog based on GitHub Pages built with Vue.js 2 + webpack 3",
-  "version": "1.3.0",
+  "version": "1.0.0",
   "main": "src/main.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot",
@@ -19,20 +19,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/viko16/vue-ghpages-blog.git"
+    "url": "git+https://github.com/chenhm/vue-github-blog.git"
   },
   "keywords": [
     "blog",
     "github",
     "vuejs",
-    "webpack"
+    "asciidoc"
   ],
-  "author": "viko16 (https://github.com/viko16)",
+  "author": "chenhm (https://github.com/chenhm)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/viko16/vue-ghpages-blog/issues"
+    "url": "https://github.com/chenhm/vue-github-blog/issues"
   },
-  "homepage": "https://github.com/viko16/vue-ghpages-blog#readme",
+  "homepage": "https://github.com/chenhm/vue-github-blog#readme",
   "devDependencies": {
     "avoriaz": "^4.1.0",
     "axios-mock-adapter": "^1.9.0",
