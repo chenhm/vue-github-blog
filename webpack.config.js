@@ -17,7 +17,7 @@ const isProd = process.env.NODE_ENV === 'production'
 const resolve = (...dir) => path.resolve(__dirname, ...dir)
 
 const config = {
-  entry: './src/main.js',
+  entry: ['babel-polyfill', './src/main.js'],
   output: {
     path: resolve('dist'),
     publicPath: '/',

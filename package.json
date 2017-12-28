@@ -1,6 +1,6 @@
 {
   "name": "vue-github-blog",
-  "description": "A blog based on GitHub Pages built with Vue.js 2 + webpack 3",
+  "description": "A blog based on GitHub Pages built with Vue.js 2 + Asciidoctor.js",
   "version": "1.0.0",
   "main": "src/main.js",
   "scripts": {
@@ -89,6 +89,7 @@
   },
   "dependencies": {
     "axios": "^0.16.0",
+    "babel-polyfill": "^6.26.0",
     "es6-promise": "^4.0.0",
     "front-matter": "^2.1.0",
     "marked": "^0.3.6",
