@@ -15,7 +15,6 @@
 <script>
 /* eslint no-undef:0 */
 import Vue from 'vue'
-import api from '../api'
 import conf from '../config'
 import fm from 'front-matter'
 import marked from '../utils/render.js'
@@ -75,16 +74,15 @@ export default {
           this.type = item.type
           const href = item.download_url
           const hash = item.sha
-          // Set window title
-          window.document.title = `${item.title} - ${conf.blogTitle}`
-          api.getDetail(hash, href)
+          store.dispatch('getDetail', {sha: hash, url: href, type: this.type})
             .then(text => {
             // Parse front-matter
             // https://github.com/jxson/front-matter#fmstring
               const content = fm(text)
               this.content = content.body
-              this.title = content.attributes.title
               this.date = content.attributes.date
+              // Set window title
+              window.document.title = `${item.title} - ${conf.blogTitle}`
             })
             .catch(err => {
               console.error('[getDetail]', err)

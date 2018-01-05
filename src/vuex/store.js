@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 const GET_LIST = 'getList'
 const UPDATE_LIST = 'updateList'
+const GET_DETAIL = 'getDetail'
 
 export default new Vuex.Store({
   state: {
@@ -27,6 +28,26 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    [GET_DETAIL] (context, {sha, url, type}) {
+      return api.getDetail(sha, url).then(text => {
+        if (type === 'md') {
+          const content = fm(text)
+          context.commit(UPDATE_LIST, {
+            sha,
+            title: content.attributes.title
+          })
+        } else {
+          let ret = /^#([^#].*)/m.exec(text)
+          if (ret) {
+            context.commit(UPDATE_LIST, {
+              sha,
+              title: ret[1]
+            })
+          }
+        }
+        return text
+      })
+    },
     [GET_LIST] (context) {
       if (this.state.lists.length > 0) {
         return Promise.resolve()
@@ -37,23 +58,7 @@ export default new Vuex.Store({
             context.commit(GET_LIST, {lists, loading: false})
             setTimeout(() => {
               lists.forEach(({sha, type, download_url}) => {
-                api.getDetail(sha, download_url).then(text => {
-                  if (type === 'md') {
-                    const content = fm(text)
-                    context.commit(UPDATE_LIST, {
-                      sha,
-                      title: content.attributes.title
-                    })
-                  } else {
-                    let ret = /^#([^#].*)/m.exec(text)
-                    if (ret) {
-                      context.commit(UPDATE_LIST, {
-                        sha,
-                        title: ret[1]
-                      })
-                    }
-                  }
-                })
+                context.dispatch(GET_DETAIL, {sha, url: download_url, type})
               })
             }, 0)
           },
