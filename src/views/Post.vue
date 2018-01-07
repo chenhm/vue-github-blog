@@ -81,6 +81,7 @@ export default {
               const content = fm(text)
               this.content = content.body
               this.date = content.attributes.date
+              this.title = content.attributes.title
               // Set window title
               window.document.title = `${item.title} - ${conf.blogTitle}`
             })
