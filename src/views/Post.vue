@@ -1,11 +1,11 @@
 <template>
   <section class="post-view">
-    <div v-if="!content">loading..</div>
+    <div v-if="loading">loading..</div>
     <h1 v-if="title" class="post-title">
       {{ title }}
       <time pubdate="pubdate" :datetime="this.date | formatDate" :title="this.date | formatDate" class="post-date">{{ this.date | timeago }}</time>
     </h1>
-    <article v-if="content" v-html="htmlFromMarkdown"></article>
+    <article v-if="!loading" v-html="htmlFromMarkdown"></article>
     <section class="comment">
       <div id="disqus_thread"></div>
     </section>
@@ -30,6 +30,7 @@ export default {
       title: '',
       type: 'adoc',
       date: null,
+      loading: true,
       content: ''
     }
   },
@@ -40,6 +41,7 @@ export default {
         await script('https://cdn.bootcss.com/asciidoctor.js/1.5.5/asciidoctor.js')
       }
       const adoc = Asciidoctor()
+      if (this.content) this.loading = false
       return this.type === 'md' ? marked(this.content) : adoc.convert(this.content,
         {attributes: { showtitle: true, toc: 'right', imagesdir: `https://raw.githubusercontent.com/${conf.repo}/${conf.branch}/${conf.path}`, 'source-highlighter': 'prismjs' }})
     }
