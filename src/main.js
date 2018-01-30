@@ -3,9 +3,12 @@ import router from './router'
 import App from './App.vue'
 import filter from './utils/filter'
 import md from './components/md.vue'
+import AsyncComputed from 'vue-async-computed'
 
 // setup Vue filter
 filter(Vue)
+
+Vue.use(AsyncComputed)
 
 // whether to allow vue-devtools inspection
 // false in production builds

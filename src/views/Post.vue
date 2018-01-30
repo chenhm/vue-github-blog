@@ -20,8 +20,8 @@ import fm from 'front-matter'
 import marked from '../utils/render.js'
 import store from '../vuex/store'
 import Prism from '../../external/prism'
+import { script } from '../utils'
 
-const adoc = Asciidoctor()
 export default {
   name: 'postView',
   store,
@@ -34,8 +34,12 @@ export default {
     }
   },
 
-  computed: {
-    htmlFromMarkdown () {
+  asyncComputed: {
+    async htmlFromMarkdown () {
+      if (typeof Asciidoctor === 'undefined') {
+        await script('https://cdn.bootcss.com/asciidoctor.js/1.5.5/asciidoctor.js')
+      }
+      const adoc = Asciidoctor()
       return this.type === 'md' ? marked(this.content) : adoc.convert(this.content,
         {attributes: { showtitle: true, toc: 'right', imagesdir: `https://raw.githubusercontent.com/${conf.repo}/${conf.branch}/${conf.path}`, 'source-highlighter': 'prismjs' }})
     }
