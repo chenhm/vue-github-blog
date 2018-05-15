@@ -36,33 +36,42 @@ export default {
   },
 
   asyncComputed: {
-    async htmlFromMarkdown () {
-      if (typeof Asciidoctor === 'undefined') {
-        await script('https://cdn.bootcss.com/asciidoctor.js/1.5.5/asciidoctor.js')
+    htmlFromMarkdown: {
+      async get () {
+        if (this.type === 'md') {
+          return marked(this.content)
+        } else {
+          if (typeof Asciidoctor === 'undefined') {
+            await script('https://cdn.bootcss.com/asciidoctor.js/1.5.5/asciidoctor.js')
+          }
+          const adoc = Asciidoctor()
+          if (this.content) this.loading = false
+          return adoc.convert(this.content,
+            {attributes: { showtitle: true, toc: 'right', imagesdir: `https://raw.githubusercontent.com/${conf.repo}/${conf.branch}/${conf.path}`, 'source-highlighter': 'prismjs' }})
+        }
+      },
+      watch () {
+        return this.content
       }
-      const adoc = Asciidoctor()
-      if (this.content) this.loading = false
-      return this.type === 'md' ? marked(this.content) : adoc.convert(this.content,
-        {attributes: { showtitle: true, toc: 'right', imagesdir: `https://raw.githubusercontent.com/${conf.repo}/${conf.branch}/${conf.path}`, 'source-highlighter': 'prismjs' }})
     }
   },
 
   created () {
     this.loadPost()
-    // setTimeout(() => {
-    //   let d = document
-    //   let s = document.createElement('script')
-    //   s.setAttribute('id', 'embed-disqus')
-    //   s.setAttribute('data-timestamp', +new Date())
-    //   s.type = 'text/javascript'
-    //   s.async = true
-    //   s.src = `//${conf.disqus_shortname}.disqus.com/embed.js`
-    //   if (typeof (DISQUS) === 'undefined') {
-    //     (d.head || d.body).appendChild(s)
-    //   } else {
-    //     DISQUS.reset({ reload: true })
-    //   }
-    // }, 0)
+    setTimeout(() => {
+      let d = document
+      let s = document.createElement('script')
+      s.setAttribute('id', 'embed-disqus')
+      s.setAttribute('data-timestamp', +new Date())
+      s.type = 'text/javascript'
+      s.async = true
+      s.src = `//${conf.disqus_shortname}.disqus.com/embed.js`
+      if (typeof (DISQUS) === 'undefined') {
+        (d.head || d.body).appendChild(s)
+      } else {
+        DISQUS.reset({ reload: true })
+      }
+    }, 0)
   },
 
   updated () {
