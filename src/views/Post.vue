@@ -28,7 +28,7 @@ export default {
   data () {
     return {
       title: '',
-      type: 'adoc',
+      type: '',
       date: null,
       loading: true,
       content: ''
@@ -38,6 +38,7 @@ export default {
   asyncComputed: {
     htmlFromMarkdown: {
       async get () {
+        if (this.content) this.loading = false
         if (this.type === 'md') {
           return marked(this.content)
         } else {
@@ -45,7 +46,6 @@ export default {
             await script('https://cdn.bootcss.com/asciidoctor.js/1.5.5/asciidoctor.js')
           }
           const adoc = Asciidoctor()
-          if (this.content) this.loading = false
           return adoc.convert(this.content,
             {attributes: { showtitle: true, toc: 'right', imagesdir: `https://raw.githubusercontent.com/${conf.repo}/${conf.branch}/${conf.path}`, 'source-highlighter': 'prismjs' }})
         }
