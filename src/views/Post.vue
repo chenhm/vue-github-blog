@@ -43,7 +43,7 @@ export default {
           return marked(this.content)
         } else {
           if (typeof Asciidoctor === 'undefined') {
-            await script('https://cdn.bootcss.com/asciidoctor.js/1.5.5/asciidoctor.js')
+            await script('https://cdnjs.cloudflare.com/ajax/libs/asciidoctor.js/1.5.6-preview.5/asciidoctor.js')
           }
           const adoc = Asciidoctor()
           return adoc.convert(this.content,
@@ -58,20 +58,20 @@ export default {
 
   created () {
     this.loadPost()
-    setTimeout(() => {
-      let d = document
-      let s = document.createElement('script')
-      s.setAttribute('id', 'embed-disqus')
-      s.setAttribute('data-timestamp', +new Date())
-      s.type = 'text/javascript'
-      s.async = true
-      s.src = `//${conf.disqus_shortname}.disqus.com/embed.js`
-      if (typeof (DISQUS) === 'undefined') {
-        (d.head || d.body).appendChild(s)
-      } else {
-        DISQUS.reset({ reload: true })
-      }
-    }, 0)
+    // setTimeout(() => {
+    //   let d = document
+    //   let s = document.createElement('script')
+    //   s.setAttribute('id', 'embed-disqus')
+    //   s.setAttribute('data-timestamp', +new Date())
+    //   s.type = 'text/javascript'
+    //   s.async = true
+    //   s.src = `//${conf.disqus_shortname}.disqus.com/embed.js`
+    //   if (typeof (DISQUS) === 'undefined') {
+    //     (d.head || d.body).appendChild(s)
+    //   } else {
+    //     DISQUS.reset({ reload: true })
+    //   }
+    // }, 0)
   },
 
   updated () {
