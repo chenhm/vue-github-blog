@@ -307,3 +307,43 @@ table.tableblock
   border-width: 0
   th, td
     border: 1px solid #dfe2e5 !important
+
+.toc
+  ul
+    margin-bottom: 0
+.toc.md
+  counter-reset: toc-li-2
+  .toc-li-2
+    counter-reset: toc-li-3
+    &::before
+      counter-increment: toc-li-2
+      content: counter(toc-li-2) ". "
+  .toc-li-3
+      counter-reset: toc-li-4
+      &::before
+        counter-increment: toc-li-3
+        content: counter(toc-li-2) ". " counter(toc-li-3) ". "
+  .toc-li-4
+    counter-reset: toc-li-5
+    &::before
+      counter-increment: toc-li-4
+      content: counter(toc-li-2) ". " counter(toc-li-3) ". " counter(toc-li-4) ". "
+
+.post-view
+  counter-reset: h2
+  h2.md
+    counter-reset: h3
+    &::before
+      counter-increment: h2
+      content: counter(h2) ". "
+  h3.md
+      counter-reset: h4
+      &::before
+        counter-increment: h3
+        content: counter(h2) ". " counter(h3) ". "
+  h4.md
+    counter-reset: h5
+    &::before
+      counter-increment: h4
+      content: counter(h2) ". " counter(h3) ". " counter(h4) ". "
+

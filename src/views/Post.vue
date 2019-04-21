@@ -22,6 +22,41 @@ import store from '../vuex/store'
 import Prism from '../../external/prism'
 import { script } from '../utils'
 
+let tocHTML = (toc) => {
+  let levelStack = []
+  let result = ''
+  const addStartUL = (level) => { result += '<ul class="sectlevel' + level + '">' }
+  const addEndUL = () => { result += '</ul>\n' }
+  const addLI = (anchor, text, level) => {
+    console.log(level)
+    result += '<li class="toc-li-' + level + '"><a href="#' + anchor + '">' + text + '</a></li>\n'
+  }
+
+  toc.forEach(item => {
+    let levelIndex = levelStack.indexOf(item.level)
+    if (levelIndex === -1) { // 没有找到相应level的ul标签，则将li放入新增的ul中
+      levelStack.unshift(item.level)
+      addStartUL(item.level - 1)
+      addLI(item.anchor, item.text, item.level)
+    } else if (levelIndex === 0) { // 找到了相应level的ul标签，并且在栈顶的位置则直接将li放在此ul下
+      addLI(item.anchor, item.text, item.level)
+    } else { // 找到了相应level的ul标签，但是不在栈顶位置，需要将之前的所有level出栈并且打上闭合标签，最后新增li
+      while (levelIndex--) {
+        levelStack.shift()
+        addEndUL()
+      }
+      addLI(item.anchor, item.text, item.level)
+    }
+  })
+  // 如果栈中还有level，全部出栈打上闭合标签
+  while (levelStack.length) {
+    levelStack.shift()
+    addEndUL()
+  }
+  // console.log(result)
+  return result ? '<div id="toc" class="toc md"><div id="toctitle">Table of Contents</div>' + result + '</div>' : ''
+}
+
 export default {
   name: 'postView',
   store,
@@ -40,7 +75,32 @@ export default {
       async get () {
         if (this.content) this.loading = false
         if (this.type === 'md') {
-          return marked(this.content)
+          var toc = []
+          var renderer = (function () {
+            var renderer = new marked.Renderer()
+            renderer.heading = function (text, level, raw, slugger) {
+              var anchor = this.options.headerPrefix + slugger.slug(raw)
+              if (level > 1) {
+                toc.push({anchor, level, text})
+              }
+              return '<h' + level + ' id="' + anchor + '" class="md">' + text + '</h' + level + '>\n'
+            }
+            return renderer
+          })()
+
+          marked.setOptions({
+            renderer: renderer,
+            gfm: true,
+            tables: true,
+            breaks: false,
+            pedantic: false,
+            sanitize: true,
+            smartLists: true,
+            smartypants: false
+          })
+
+          var html = marked(this.content)
+          return tocHTML(toc) + html
         } else {
           if (typeof Asciidoctor === 'undefined') {
             await script('https://cdnjs.cloudflare.com/ajax/libs/asciidoctor.js/1.5.6-preview.5/asciidoctor.js')

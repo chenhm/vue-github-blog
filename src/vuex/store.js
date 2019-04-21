@@ -34,7 +34,7 @@ export default new Vuex.Store({
           const content = fm(text)
           context.commit(UPDATE_LIST, {
             sha,
-            title: content.attributes.title
+            title: (content.attributes.title) ? content.attributes.title : /^#([^#].*)/m.exec(text)[1]
           })
         } else {
           let ret = /^#([^#].*)/m.exec(text)
