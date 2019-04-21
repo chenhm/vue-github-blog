@@ -29,10 +29,9 @@ before_script:
   - git clone --branch gh-pages https://${GH_REF} dist
 
 script:
-  - npm test
+  - npm run build
 
 after_success:
-  - npm run build
   - cd dist
   - echo "chenhm.com" > CNAME
   - cp index.html 404.html

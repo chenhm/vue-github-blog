@@ -14,9 +14,10 @@ const isProd = true
 export function getListUrl () {
   // @see https://developer.github.com/v3/repos/contents/#get-contents
   // @example https://api.github.com/repos/viko16/vue-ghpages-blog/contents/markdown?ref=markdown
-  let url = `https://api.github.com/repos/${conf.repo}/contents/`
-  if (conf.path) url += conf.path
-  if (conf.branch) url += `?ref=${conf.branch}`
+  // let url = `https://api.github.com/repos/${conf.repo}/contents/`
+  // if (conf.path) url += conf.path
+  // if (conf.branch) url += `?ref=${conf.branch}`
+  let url = `https://raw.githubusercontent.com/${conf.repo}/list/list.json`
   return isProd ? url : '/list.json'
 }
 
