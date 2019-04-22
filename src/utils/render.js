@@ -76,7 +76,6 @@ export default (md) => {
     }
     return `<h${level} id="${anchor}" class="md">${text}</h${level}>`
   }
-  console.log(renderer.image)
   let html = marked(md)
   return tocHTML(toc) + html
 }
