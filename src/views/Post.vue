@@ -41,7 +41,7 @@ export default {
         if (this.content) this.loading = false
         if (this.type === 'md') {
           return marked(this.content)
-        } else {
+        } else if (this.type === 'adoc') {
           if (typeof Asciidoctor === 'undefined') {
             await script('https://cdnjs.cloudflare.com/ajax/libs/asciidoctor.js/1.5.6-preview.5/asciidoctor.js')
           }
